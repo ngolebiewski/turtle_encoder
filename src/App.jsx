@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './App.css';
 
 function App() {
   const [phrase, setPhrase] = useState('');
@@ -42,7 +41,9 @@ function App() {
           <p className="output-text">Binary values: {binaryArray.join(' ')}</p>
         </div>
 
-        <button onClick={toggleLayout}>Toggle Layout</button>
+        <button onClick={toggleLayout}>
+          {isTwoColumns? 'Toggle Layout: 1 Column' : 'Toggle Layout: 2 Columns'}
+        </button>
       </div>
 
       <div className={`turtle-grid ${isTwoColumns ? 'two-columns' : ''}`}>

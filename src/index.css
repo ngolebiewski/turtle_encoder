@@ -48,6 +48,7 @@ body {
   background-color: white; /* White background for turtles */
   padding: 10px;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
 /* Default single-column layout */
@@ -71,7 +72,7 @@ body {
 /* Adjust image size for mobile devices */
 @media (max-width: 600px) {
   .turtle-image {
-    max-width: 50px;
+    max-width: 40px;
   }
 }
 
