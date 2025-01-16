@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import html2canvas from 'html2canvas';
 
 function App() {
   const [phrase, setPhrase] = useState('');
   const [ordArray, setOrdArray] = useState([]);
   const [binaryArray, setBinaryArray] = useState([]);
   const [isTwoColumns, setIsTwoColumns] = useState(false); // State to control column layout
+  const turtleGridRef = useRef(null); // Ref for turtle grid container
 
   const handleChange = (event) => {
     const newPhrase = event.target.value;
@@ -21,6 +23,27 @@ function App() {
   // Toggle the layout
   const toggleLayout = () => {
     setIsTwoColumns(!isTwoColumns);
+  };
+
+  // Capture the turtle grid and generate a JPG image
+  const captureTurtles = () => {
+    const grid = turtleGridRef.current;
+
+    if (!grid) {
+      console.error('Turtle grid not found');
+      return;
+    }
+
+    html2canvas(grid).then((canvas) => {
+      // Convert the canvas to a JPG image
+      const imgData = canvas.toDataURL('image/jpeg', 1.0); // quality is set to 1.0 (maximum)
+      const link = document.createElement('a');
+      link.href = imgData;
+      link.download = 'turtle_grid.jpg';
+      link.click(); // Trigger the download
+    }).catch((error) => {
+      console.error('Error capturing canvas: ', error);
+    });
   };
 
   return (
@@ -42,11 +65,15 @@ function App() {
         </div>
 
         <button onClick={toggleLayout}>
-          {isTwoColumns? 'Toggle Layout: 1 Column' : 'Toggle Layout: 2 Columns'}
+          {isTwoColumns ? 'Toggle Layout: 1 Column' : 'Toggle Layout: 2 Columns'}
+        </button>
+
+        <button onClick={captureTurtles} className="download-button">
+          Download Turtles as JPG
         </button>
       </div>
 
-      <div className={`turtle-grid ${isTwoColumns ? 'two-columns' : ''}`}>
+      <div ref={turtleGridRef} className={`turtle-grid ${isTwoColumns ? 'two-columns' : ''}`}>
         {binaryArray.map((binary, index) => (
           <div key={index} className="turtle-row">
             {binary.split('').map((bit, bitIndex) => (
