@@ -46,6 +46,24 @@ function App() {
     });
   };
 
+  // Function to display the phrase with spaces between each character and extra space for spaces
+
+  // const formatPhraseWithSpaces = (phrase) => {
+  //   return phrase
+  //     .split('')
+  //     .map((char, index, arr) => {
+  //       // If current character is a space, replace with two spaces
+  //       if (char === ' ') {
+  //         // If next character is a space, add two spaces
+  //         return '  ';
+  //       } else {
+  //         // Otherwise, add one space after every character
+  //         return index !== arr.length - 1 ? char + ' ' : char;
+  //       }
+  //     })
+  //     .join('');
+  // };
+
   return (
     <>
       <div className="app-container">
@@ -59,7 +77,8 @@ function App() {
         />
         
         <div className="output-section">
-          <p className="output-text">Your phrase: {phrase}</p>
+          {/* <p className="output-text">Your phrase: {formatPhraseWithSpaces(phrase)}</p> */}
+          <p className="output-text">Your phrase: {phrase}</p> 
           <p className="output-text">Ordinal values: {ordArray.join(' ')}</p>
           <p className="output-text">Binary values: {binaryArray.join(' ')}</p>
         </div>
