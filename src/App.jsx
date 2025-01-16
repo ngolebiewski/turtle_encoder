@@ -81,6 +81,7 @@ function App() {
           <p className="output-text">Your phrase: {phrase}</p> 
           <p className="output-text">Ordinal values: {ordArray.join(' ')}</p>
           <p className="output-text">Binary values: {binaryArray.join(' ')}</p>
+          <p className="output-text">Turtle code: Left facing turtle = 0 | Right facing turtle = 1</p>
         </div>
 
         <button onClick={toggleLayout}>
